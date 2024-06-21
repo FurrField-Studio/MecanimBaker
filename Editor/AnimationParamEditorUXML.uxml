@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="True">
+    <ui:Foldout name="ParamNameFoldout" focusable="false" style="background-color: rgba(0, 0, 0, 0.2);">
+        <ui:TextField picking-mode="Ignore" label="Parameter name" value="filler text" focusable="false" readonly="true" name="ParamNameField" />
+        <ui:IntegerField label="Parameter name hash" value="42" name="ParamNameHashField" readonly="true" />
+        <ui:TextField picking-mode="Ignore" label="Parameter type" value="filler text" readonly="true" name="ParamTypeField" />
+        <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="ParamSettersScrollView" />
+    </ui:Foldout>
+</ui:UXML>

@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <uie:PropertyField name="AnimatorController" binding-path="_animatorController" label="Animator Controller" />
+    <ui:Button text="Bake" parse-escape-sequences="false" display-tooltip-when-elided="true" name="BakeParametersButton" enable-rich-text="false" />
+    <ui:Foldout text="Animations Params">
+        <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="AnimationsParamsList" horizontal-scroller-visibility="Hidden" style="left: -5%;" />
+    </ui:Foldout>
+    <ui:Foldout text="State names">
+        <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="StateNamesList" horizontal-scroller-visibility="Hidden" />
+    </ui:Foldout>
+</ui:UXML>

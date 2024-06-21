@@ -1,0 +1,12 @@
+{
+  "name": "com.furrfield-studio.mecanim-baker",
+  "version": "1.0.0",
+  "displayName": "Mecanim Baker",
+  "author": {
+    "name": "FurrField Studio",
+    "email": "contact@furrfield.com",
+    "url": "https://furrfield.com"
+  },
+  "documentationUrl": "https://github.com/FurrField-Studio/MecanimBaker",
+  "description": "Mecanim baker is a tool to bake state names, parameter names and parameter values from animator."
+}
