@@ -24,18 +24,15 @@ namespace FurrfieldStudio.MecanimBaker.Editor
         {
             _animatorParamsReader = target as AnimatorParamsReader;
             
-            // Create a new VisualElement to be the root of our Inspector UI.
             VisualElement myInspector = new VisualElement();
 
-            // Load from default reference.
             inspectorXML.CloneTree(myInspector);
 
             myInspector.Q<Button>("BakeParametersButton").clicked += BakeParameters;
             
             SetupAnimationParamListView(myInspector);
             SetupStateNamesListView(myInspector);
-                
-            // Return the finished Inspector UI.
+
             return myInspector;
         }
         
@@ -45,8 +42,6 @@ namespace FurrfieldStudio.MecanimBaker.Editor
 
             _animatorParamsReader.AnimatorParams.Clear();
             _animatorParamsReader.StateNames.Clear();
-            
-            // LoadAllAnimationParams();
 
             GenerateAnimationParams();
             GenerateTransitionContainers();
@@ -107,28 +102,21 @@ namespace FurrfieldStudio.MecanimBaker.Editor
 
         #region DataBaking
 
-        // private void LoadAllAnimationParams()
-        // {
-        //     _loadedAnimationParamsHash = _animatorParamsReader.AnimatorParams.ToDictionary(ap => ap.NameHash, ap => ap);
-        //     _loadedAnimationParams = _animatorParamsReader.AnimatorParams.ToDictionary(ap => ap.Name, ap => ap);
-        // }
-
         private void GenerateAnimationParams()
         {
             foreach(AnimatorControllerParameter param in _animatorParamsReader.AnimatorController.parameters)
             {
-                AnimationParam animationParam;
-
-                animationParam = new AnimationParam();
+                AnimationParam animationParam = new AnimationParam(param.name, param.nameHash, param.type);
 
                 _animatorParamsReader.AnimatorParams.Add(animationParam);
-
-                animationParam.Initialize(param.name, param.nameHash, param.type);
 
                 _loadedAnimationParamsHash.Add(animationParam.NameHash, animationParam);
                 _loadedAnimationParams.Add(animationParam.Name, animationParam);
 
                 if (param.type == AnimatorControllerParameterType.Bool)
+                    //check for bool parameter type,
+                    //if its bool we can generate true and false setter for it
+                    //and skip setter generations in transition checker loop
                 {
                     AnimationParamSetter trueParamSetter = new AnimationParamSetter();
                     trueParamSetter.Value = GenerateParamSetter(animationParam, -1);
@@ -193,14 +181,14 @@ namespace FurrfieldStudio.MecanimBaker.Editor
                 {
                     animationParamSetter.Value = GenerateParamSetter(animationParam, threshold);
                 }
-
-                return animationParamSetter;
             }
-
-            animationParamSetter = new AnimationParamSetter();
-            animationParamSetter.Value = GenerateParamSetter(animationParam, threshold);
+            else
+            {
+                animationParamSetter = new AnimationParamSetter();
+                animationParamSetter.Value = GenerateParamSetter(animationParam, threshold);
             
-            animationParam.AnimationParamSetters.Add(animationParamSetter);
+                animationParam.AnimationParamSetters.Add(animationParamSetter);
+            }
 
             return animationParamSetter;
         }

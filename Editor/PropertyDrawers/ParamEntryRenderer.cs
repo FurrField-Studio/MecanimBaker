@@ -28,8 +28,6 @@ namespace FurrfieldStudio.MecanimBaker.Editor.PropertyDrawers
         {
             if(!_property.displayName.Contains("Element"))
             {
-                GUIStyle style = new GUIStyle();
-                style.alignment = TextAnchor.MiddleLeft;
                 GUILayout.Label(_property.displayName);
             }
 

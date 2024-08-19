@@ -15,9 +15,7 @@ namespace FurrfieldStudio.MecanimBaker
         
         [SerializeField]
         private string _animationParamValue;
-
-        [NonSerialized]
-        private float _rawParamValue;
+        
         [NonSerialized]
         private AnimationParam _animationParam;
         [NonSerialized]
@@ -45,10 +43,9 @@ namespace FurrfieldStudio.MecanimBaker
         private void LoadAnimationParam()
         {
             if(_animationParamSetter != null) return;
-
-            _rawParamValue = float.Parse(_animationParamValue);
+            
             _animationParam = _animatorParamsReader.AnimatorParams.Find(ap => ap.Name == _paramName);
-            _animationParamSetter = _animationParam.AnimationParamSetters.Find(aps => aps.Value.GetValueToSet() == _rawParamValue);
+            _animationParamSetter = _animationParam.AnimationParamSetters.Find(aps => aps.Value.GetValueToSet() == float.Parse(_animationParamValue));
         }
     }
 }

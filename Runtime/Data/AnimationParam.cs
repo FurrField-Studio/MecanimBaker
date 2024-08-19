@@ -24,7 +24,9 @@ namespace FurrfieldStudio.MecanimBaker.Data
         private List<AnimationParamSetter> _animationParamSetters;
         public List<AnimationParamSetter> AnimationParamSetters => _animationParamSetters;
 
-        public void Initialize(string name, int nameHash, AnimatorControllerParameterType animatorControllerParameterType)
+        public AnimationParam() { }
+        
+        public AnimationParam(string name, int nameHash, AnimatorControllerParameterType animatorControllerParameterType)
         {
             _name = name;
             _nameHash = nameHash;
